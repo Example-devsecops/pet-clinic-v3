@@ -12,3 +12,4 @@ steps:
     javaHomeOption: 'JDKVersion'
     sonarQubeRunAnalysis: false
     spotBugsAnalysis: false
+    - task: SonarCloudAnalyze@1
