@@ -12,4 +12,23 @@ steps:
     javaHomeOption: 'JDKVersion'
     sonarQubeRunAnalysis: false
     spotBugsAnalysis: false
-    - task: SonarCloudAnalyze@1
+
+
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'sonar'
+    organization: 'example-devsecops'
+    projectKey: 'Example-devsecops_pet-clinic-v3'
+    projectName: 'pet-clinic-v3'
+
+- task: Gradle@3
+  inputs:
+    gradleWrapperFile: 'gradlew'
+    tasks: 'sonarqube'
+    publishJUnitResults: true
+    testResultsFiles: '**/TEST-*.xml'
+    javaHomeOption: 'JDKVersion'
+    sonarQubeRunAnalysis: true
+    sqGradlePluginVersionChoice: 'specify'
+    sonarQubeGradlePluginVersion: '2.6.1'
+    spotBugsAnalysis: false
