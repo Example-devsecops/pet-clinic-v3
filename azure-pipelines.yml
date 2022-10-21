@@ -24,11 +24,10 @@ steps:
 - task: Gradle@3
   inputs:
     gradleWrapperFile: 'gradlew'
-    tasks: 'sonarqube'
+    tasks: 'build'
     publishJUnitResults: true
     testResultsFiles: '**/TEST-*.xml'
     javaHomeOption: 'JDKVersion'
     sonarQubeRunAnalysis: true
     sqGradlePluginVersionChoice: 'specify'
-    sonarQubeGradlePluginVersion: '3.4.0'
-    spotBugsAnalysis: false
+    sonarQubeGradlePluginVersion: '3.3'
