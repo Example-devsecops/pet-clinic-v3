@@ -1,8 +1,9 @@
-
+#compilacion
 pool:
   vmImage: ubuntu-latest
 
 steps:
+#construccion con gradle
 - task: Gradle@3
   inputs:
     gradleWrapperFile: 'gradlew'
@@ -13,7 +14,7 @@ steps:
     sonarQubeRunAnalysis: false
     spotBugsAnalysis: false
 
-
+#integracion de sonarcloud
 - task: SonarCloudPrepare@1
   inputs:
     SonarCloud: 'sonar'
@@ -21,10 +22,11 @@ steps:
     projectKey: 'Example-devsecops_pet-clinic-v3'
     projectName: 'pet-clinic-v3'
 
+#ejecucion gradle
 - task: Gradle@3
   inputs:
     gradleWrapperFile: 'gradlew'
-    tasks: 'build'
+    tasks: 'sonarqube'
     publishJUnitResults: true
     testResultsFiles: '**/TEST-*.xml'
     javaHomeOption: 'JDKVersion'
